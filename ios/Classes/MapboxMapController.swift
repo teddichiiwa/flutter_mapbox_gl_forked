@@ -419,11 +419,8 @@ class MapboxMapController: NSObject, FlutterPlatformView, MGLMapViewDelegate, Ma
         // Check if json, url or plain string:
         if styleString.isEmpty {
             NSLog("setStyleString - string empty")
-        } else if (styleString.hasPrefix("{") || styleString.hasPrefix("[")) {
-            // Currently the iOS Mapbox SDK does not have a builder for json.
-            NSLog("setStyleString - JSON style currently not supported")
         } else {
-            mapView.styleURL = URL(string: styleString)
+            mapView.styleURL = Bundle.main.url(forResource: "third_party_vector_style", withExtension: "json")!
         }
     }
     func setRotateGesturesEnabled(rotateGesturesEnabled: Bool) {
